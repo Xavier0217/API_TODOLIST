@@ -1,9 +1,11 @@
 package br.com.todolist;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/todos")
@@ -27,5 +29,14 @@ public class TodoController {
     public Todo create(@RequestBody Todo tarefa) {
         return this.todoRepo.save(tarefa);
     }
-
+@DeleteMapping("/{tarefaid}")
+    public ResponseEntity<Void> delete(@PathVariable Integer tarefaid) {
+        Optional<Todo> todo = this.todoRepo.findById(tarefaid);
+        if (todo.isPresent()) {
+            this.todoRepo.deleteById(tarefaid);
+            return ResponseEntity.noContent().build();
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
 }

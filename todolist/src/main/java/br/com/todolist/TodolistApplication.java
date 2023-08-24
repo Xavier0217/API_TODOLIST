@@ -11,16 +11,16 @@ public class TodolistApplication {
 	public static void main(String[] args) { SpringApplication.run(TodolistApplication.class, args); }
 
 	@Bean
-	CommandLineRunner criarTarefa(TodoRepository todoRepository) {
-		return args -> {
-			todoRepository.deleteAll();
-			Todo todo1 = new Todo("Configurar JDK", "Preciso aprender a configurar o jdk corretamente", StatusEnum.NOT_STARTED);
-			Todo todo2 = new Todo("Estudar Java", "Estudar Java para aprender programação", StatusEnum.IN_PROGRESS);
-			Todo todo3 = new Todo("Estudar Html", "Estudar HTML para desenvolver sites", StatusEnum.FINISHED);
-			todoRepository.save(todo1);
-			todoRepository.save(todo2);
-			todoRepository.save(todo3);
-		};
-	}
+CommandLineRunner criarTarefa(TodoRepository todoRepository) {
+	return args -> {
+		todoRepository.deleteAll();
+		Todo todo1 = new Todo("Configurar JDK", "Preciso aprender a configurar o jdk corretamente", StatusEnum.NOT_STARTED);
+		Todo todo2 = new Todo("Estudar Java", "Estudar Java para aprender programação", StatusEnum.IN_PROGRESS);
+		Todo todo3 = new Todo("Estudar Html", "Estudar HTML para desenvolver sites", StatusEnum.FINISHED);
+		todoRepository.save(todo1);
+		todoRepository.save(todo2);
+		todoRepository.save(todo3);
+	};
+}
 
 }
